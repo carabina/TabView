@@ -17,13 +17,11 @@
 		3C1768322025801E0031FEA9 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1768312025801E0031FEA9 /* TabViewController.swift */; };
 		3C176834202581BE0031FEA9 /* NSLayoutConstraint+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C176833202581BE0031FEA9 /* NSLayoutConstraint+Custom.swift */; };
 		3C176836202582F60031FEA9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C176835202582F60031FEA9 /* Theme.swift */; };
-		3C176839202585390031FEA9 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C176838202585390031FEA9 /* TabViewModel.swift */; };
 		3C17683B2025855C0031FEA9 /* TabViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17683A2025855C0031FEA9 /* TabViewBar.swift */; };
 		3C17683D202585920031FEA9 /* TabViewTabCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17683C202585920031FEA9 /* TabViewTabCollectionView.swift */; };
 		3C17683F202585D80031FEA9 /* UIBarButtonItem+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17683E202585D80031FEA9 /* UIBarButtonItem+View.swift */; };
 		3C1768422025A33C0031FEA9 /* NavigationItemObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1768412025A33C0031FEA9 /* NavigationItemObserver.swift */; };
 		3C905FBA2025BEB90084BA63 /* NavigationItemObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1768412025A33C0031FEA9 /* NavigationItemObserver.swift */; };
-		3C905FBB2025BEB90084BA63 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C176838202585390031FEA9 /* TabViewModel.swift */; };
 		3C905FBC2025BEB90084BA63 /* TabViewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17683A2025855C0031FEA9 /* TabViewBar.swift */; };
 		3C905FBD2025BEB90084BA63 /* TabViewTabCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17683C202585920031FEA9 /* TabViewTabCollectionView.swift */; };
 		3C905FBE2025BEBB0084BA63 /* NSLayoutConstraint+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C176833202581BE0031FEA9 /* NSLayoutConstraint+Custom.swift */; };
@@ -78,7 +76,6 @@
 		3C1768312025801E0031FEA9 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		3C176833202581BE0031FEA9 /* NSLayoutConstraint+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Custom.swift"; sourceTree = "<group>"; };
 		3C176835202582F60031FEA9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		3C176838202585390031FEA9 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		3C17683A2025855C0031FEA9 /* TabViewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewBar.swift; sourceTree = "<group>"; };
 		3C17683C202585920031FEA9 /* TabViewTabCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewTabCollectionView.swift; sourceTree = "<group>"; };
 		3C17683E202585D80031FEA9 /* UIBarButtonItem+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+View.swift"; sourceTree = "<group>"; };
@@ -176,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				3C1768432025A3DB0031FEA9 /* Util */,
-				3C176838202585390031FEA9 /* TabViewModel.swift */,
 				3C17683A2025855C0031FEA9 /* TabViewBar.swift */,
 				3C17683C202585920031FEA9 /* TabViewTabCollectionView.swift */,
 				3C1768372025852A0031FEA9 /* Extension */,
@@ -328,7 +324,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C176839202585390031FEA9 /* TabViewModel.swift in Sources */,
 				3C17683F202585D80031FEA9 /* UIBarButtonItem+View.swift in Sources */,
 				3C176836202582F60031FEA9 /* Theme.swift in Sources */,
 				3C176834202581BE0031FEA9 /* NSLayoutConstraint+Custom.swift in Sources */,
@@ -353,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C905FC12025BEBB0084BA63 /* TabViewController.swift in Sources */,
-				3C905FBB2025BEB90084BA63 /* TabViewModel.swift in Sources */,
 				3C905FBD2025BEB90084BA63 /* TabViewTabCollectionView.swift in Sources */,
 				3C905FBA2025BEB90084BA63 /* NavigationItemObserver.swift in Sources */,
 				3C905FBF2025BEBB0084BA63 /* UIBarButtonItem+View.swift in Sources */,

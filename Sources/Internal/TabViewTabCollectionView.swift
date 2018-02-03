@@ -41,6 +41,7 @@ class TabViewTabCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
         self.decelerationRate = UIScrollViewDecelerationRateFast
+        self.allowsMultipleSelection = false
 
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gesture:))))
 
@@ -79,7 +80,6 @@ class TabViewTabCollectionView: UICollectionView, UICollectionViewDelegate, UICo
         cell.theme = self.theme
         cell.barDelegate = self.barDelegate
         cell.setTab(tab)
-        cell.isSelected = barDataSource?.visibleViewController == tab
 
         return cell
     }
@@ -139,15 +139,12 @@ private class TabViewTab: UICollectionViewCell {
     private weak var currentTab: UIViewController?
     weak var barDelegate: TabViewBarDelegate?
 
-    private var titleViewLeadingConstraint: NSLayoutConstraint?
-    private var titleViewTrailingConstraint: NSLayoutConstraint?
-
     var theme: TabViewTheme? {
-        didSet { if let theme = theme { self.applyTheme(theme) } }
+        didSet { update() }
     }
 
     override var isSelected: Bool {
-        didSet { if let theme = theme { self.applyTheme(theme) } }
+        didSet { update() }
     }
 
     override init(frame: CGRect) {
@@ -192,11 +189,9 @@ private class TabViewTab: UICollectionViewCell {
             closeButton.widthAnchor.constraint(equalToConstant: buttonSize.width).withPriority(.defaultHigh),
             closeButton.heightAnchor.constraint(equalToConstant: buttonSize.height).withPriority(.defaultHigh)
         ])
-        titleViewLeadingConstraint = titleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
-        titleViewTrailingConstraint = titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         NSLayoutConstraint.activate([
-            titleViewLeadingConstraint!,
-            titleViewTrailingConstraint!,
+            titleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
+            titleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
             titleView.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
@@ -216,30 +211,36 @@ private class TabViewTab: UICollectionViewCell {
             self.backgroundColor = nil
             self.closeButton.isHidden = false
             titleView.textColor = theme.tabSelectedTextColor
-
-            // Inset title view by the width of the close button.
-            titleViewLeadingConstraint?.constant = closeButtonSize
-            titleViewTrailingConstraint?.constant = -titleLabelPadding
         } else {
             self.leftSeparatorView.backgroundColor = theme.separatorColor
             self.backgroundColor = theme.tabBackgroundDeselectedColor
             self.closeButton.isHidden = true
             titleView.textColor = theme.tabTextColor
-            titleViewLeadingConstraint?.constant = titleLabelPadding
-            titleViewTrailingConstraint?.constant = -titleLabelPadding
         }
     }
 
     func setTab(_ tab: UIViewController) {
         currentTab = tab
 
-        titleView.text = tab.title
+        update()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
         titleView.text = nil
+    }
+
+    private func update() {
+        if let theme = theme {
+            applyTheme(theme)
+        }
+
+        if !closeButton.isHidden && self.bounds.width - titleView.intrinsicContentSize.width < closeButtonSize {
+            titleView.text = "\t" + (currentTab?.title ?? "")
+        } else {
+            titleView.text = currentTab?.title
+        }
     }
 
     @objc func closeButtonTapped() {

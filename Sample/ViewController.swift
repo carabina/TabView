@@ -14,6 +14,8 @@ class ViewController: TabViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Tab View"
+
         // Set the tabs in this tab view
         self.viewControllers = [
             Tab(title: "White", color: .white),

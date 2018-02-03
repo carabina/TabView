@@ -12,6 +12,7 @@ private let barHeight: CGFloat = 44
 private let tabHeight: CGFloat = 32
 
 protocol TabViewBarDataSource: class {
+    var title: String? { get }
     var viewControllers: [UIViewController] { get }
     var visibleViewController: UIViewController? { get }
 }
@@ -46,7 +47,6 @@ class TabViewBar: UIView {
     private let trailingBarButtonStackView: UIStackView
 
     private let tabCollectionView: TabViewTabCollectionView
-    private let tabCollectionViewHeightConstraint: NSLayoutConstraint
     private let separator: UIView
 
     init(theme: TabViewTheme) {
@@ -59,7 +59,6 @@ class TabViewBar: UIView {
         self.trailingBarButtonStackView = UIStackView()
 
         self.tabCollectionView = TabViewTabCollectionView(theme: theme)
-        tabCollectionViewHeightConstraint = tabCollectionView.heightAnchor.constraint(equalToConstant: 0).withPriority(.defaultHigh)
         self.separator = UIView()
 
         super.init(frame: .zero)
@@ -102,7 +101,7 @@ class TabViewBar: UIView {
         tabCollectionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tabCollectionView)
         NSLayoutConstraint.activate([
-            tabCollectionViewHeightConstraint,
+            tabCollectionView.heightAnchor.constraint(equalToConstant: tabHeight),
             tabCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             tabCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tabCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -127,7 +126,6 @@ class TabViewBar: UIView {
         self.backgroundColor = theme.barTintColor.withAlphaComponent(0.7)
         self.visualEffectView.effect = UIBlurEffect.init(style: theme.barBlurStyle)
         self.titleLabel.textColor = theme.barTitleColor
-        self.tintColor = theme.barTitleColor
         self.separator.backgroundColor = theme.separatorColor
         self.tabCollectionView.theme = theme
     }
@@ -154,16 +152,37 @@ class TabViewBar: UIView {
         }
     }
 
+    func addTab(atIndex index: Int) {
+        tabCollectionView.performBatchUpdates({
+            tabCollectionView.insertItems(at: [IndexPath.init(item: index, section: 0)])
+        }, completion: nil)
+    }
+
+    func removeTab(atIndex index: Int) {
+        tabCollectionView.performBatchUpdates({
+            tabCollectionView.deleteItems(at: [IndexPath.init(item: index, section: 0)])
+        }, completion: nil)
+    }
+
+    func selectTab(atIndex index: Int) {
+        if let indexPaths = tabCollectionView.indexPathsForSelectedItems {
+            for indexPath in indexPaths where indexPath.item != index {
+                tabCollectionView.deselectItem(at: indexPath, animated: true)
+            }
+        }
+        tabCollectionView.selectItem(at: IndexPath.init(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
+
+    func updateTitle() {
+        self.titleLabel.text = barDataSource?.title
+    }
+
     func refresh() {
-        self.titleLabel.text = barDataSource?.visibleViewController?.title
+        updateTitle()
         tabCollectionView.reloadData()
 
-        tabCollectionViewHeightConstraint.constant = (barDataSource?.viewControllers.count ?? 0) > 1 ? tabHeight : 0
-        self.layoutIfNeeded() // Apply constraint change immediately.
-
         if let visibleVC = barDataSource?.visibleViewController, let index = barDataSource?.viewControllers.index(of: visibleVC) {
-            let indexPath = IndexPath(item: index, section: 0)
-            tabCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.selectTab(atIndex: index)
         }
     }
 }
