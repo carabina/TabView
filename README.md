@@ -16,7 +16,7 @@ A replacement for UITabViewController, which mimics Safari tabs on iOS
 ![Package Managers](https://img.shields.io/badge/supports-Carthage-orange.svg)
 [![Contact](https://img.shields.io/badge/contact-%40ian__mcdowell-3a8fc1.svg)](https://twitter.com/ian_mcdowell)
 
-<img src="Resources/Screenshot.png" height="300">
+<img src="Resources/Screenshot.png" height="300"> 
 
 # Requirements
 
