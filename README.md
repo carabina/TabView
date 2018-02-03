@@ -1,10 +1,10 @@
 # Tab View
 
 <p align="center">
-  <a href="https://github.com/IMcD23/Git">Git</a> &bull;
-  <a href="https://github.com/IMcD23/InputAssistant">InputAssistant</a> &bull;
+  <a href="https://github.com/IMcD23/TiltedTabView">TiltedTabView</a> &bull;
   <b>TabView</b> &bull;
-  <a href="https://github.com/IMcD23/TiltedTabView">TiltedTabView</a>
+  <a href="https://github.com/IMcD23/InputAssistant">InputAssistant</a> &bull;
+  <a href="https://github.com/IMcD23/Git">Git</a>
 </p>
 
 --------
@@ -21,6 +21,7 @@ A replacement for UITabViewController, which mimics Safari tabs on iOS
 # Requirements
 
 * Xcode 9 or later
+* iOS 11.0 or later
 
 # Usage
 

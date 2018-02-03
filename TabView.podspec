@@ -25,11 +25,11 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-A replacement for UITabViewController, which mimics Safari tabs on iOS
+TabView 1.0.0 - A replacement for UITabViewController, which mimics Safari tabs on iOS
                    DESC
 
   s.homepage     = "https://github.com/IMcD23/TabView"
-  s.screenshots  = "https://github.com/IMcD23/TabView/raw/master/Resources/Screenshot.png",
+  s.screenshots  = "https://github.com/IMcD23/TabView/raw/master/Resources/Screenshot.png"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -63,7 +63,7 @@ A replacement for UITabViewController, which mimics Safari tabs on iOS
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, "11.0"
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
@@ -79,7 +79,7 @@ A replacement for UITabViewController, which mimics Safari tabs on iOS
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/IMcD23/InputAssistant.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/IMcD23/TabView.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,7 +90,7 @@ A replacement for UITabViewController, which mimics Safari tabs on iOS
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Sources/*.swift"
+  s.source_files  = "Sources/**/*.swift"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
